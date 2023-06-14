@@ -12,7 +12,26 @@ public class DetoBall : PhysicsGame
     private PhysicsObject ball;
     private static readonly String[] lines =
     {
-        "        X  X  X         "};
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXX                    X",
+        "XXXXXXXXXXXXXX                    X",
+        "XXXXXXXXXXXXXX                    X",
+        "XXXXXXXXXXXXXX                    X",
+        "XXXXXXXXXXXXXX                    X",
+        "XXXXXXXXXXXXXX    XXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXX    XXXXXXXXXXXXXXXXX",
+        "X    P            XXXXXXXXXXXXXXXXX",
+        "X                 XXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    };  
         
         
         
@@ -28,20 +47,19 @@ public class DetoBall : PhysicsGame
         Keyboard.Listen(Key.A, ButtonState.Down, left, null);
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "end game");
         Keyboard.Listen(Key.K, ButtonState.Pressed, kablooey, "explodes, but up");
+      TileMap tiles = TileMap.FromStringArray(lines);
+        tiles.SetTileMethod('X', LuoSeina, Color.Gray);
+        tiles.SetTileMethod('P', the_ballmaker);
+        tiles.Execute(60, 60);
+        
     }
     
     
     void LuoKentta()
     {
-        ball = new PhysicsObject(25.0, 25.0);
-        ball.Shape = Shape.Circle;
-        ball.X = -200.0;
-        ball.Y = -50;
-        ball.Restitution = 0.5;
         
-        Add(ball);
         
-        Level.CreateBorders(1.0, false);
+        
         Level.Background.Color = Color.Black;
 
         Camera.ZoomToLevel();
@@ -128,9 +146,30 @@ public class DetoBall : PhysicsGame
     }
 
 
+    private void LuoSeina(Vector paikka, double leveys, double korkeus, Color vari)
+    {
+        PhysicsObject seina = new PhysicsObject(leveys-1, korkeus-2);
+        seina.Position = paikka;
+        seina.Color = vari;
+        seina.Tag = "rakenne";
+        seina.IgnoresExplosions=true;
+        Add(seina);
+        seina.IgnoresGravity = true;
+        seina.MakeStatic();
+        seina.Restitution = 1.0;
+    }
 
-
-
+    void the_ballmaker(Vector paikka, double leveys, double korkeus)
+    {
+        ball = new PhysicsObject(25.0, 25.0);
+        ball.Shape = Shape.Circle;
+        ball.Position = paikka;
+        ball.Restitution = 0.5;
+        
+        Add(ball);
+        
+        
+    }
 
 
 
