@@ -10,62 +10,51 @@ namespace DetoBall;
 public class DetoBall : PhysicsGame
 {
     private PhysicsObject ball;
-    private static readonly String[] lines =
-    {
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XXXXXXXXXXXXXX                    X",
-        "XXXXXXXXXXXXXX                    X",
-        "XXXXXXXXXXXXXX                    X",
-        "XXXXXXXXXXXXXX                    X",
-        "XXXXXXXXXXXXXX                    X",
-        "XXXXXXXXXXXXXX    XXXXXXXXXXXXXXXXX",
-        "XXXXXXXXXXXXXX    XXXXXXXXXXXXXXXXX",
-        "X    P            XXXXXXXXXXXXXXXXX",
-        "X                 XXXXXXXXXXXXXXXXX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    };  
-        
+  //  TileMap ruudut = TileMap.FromLevelAsset("kentta1");
+    private int kenttaNro = 1;
+    
         
         
         
     
     public override void Begin()
     {
+        Seuraavakenttä();
         Keyboard.Listen(Key.J, ButtonState.Pressed, boom, "explode, but left");
         Gravity = new Vector(0.0, -981.0);
         Keyboard.Listen(Key.L, ButtonState.Pressed, kaboom, "explode, but right");
-        LuoKentta();
         Keyboard.Listen(Key.D, ButtonState.Down, right, null);
         Keyboard.Listen(Key.A, ButtonState.Down, left, null);
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "end game");
         Keyboard.Listen(Key.K, ButtonState.Pressed, kablooey, "explodes, but up");
-      TileMap tiles = TileMap.FromStringArray(lines);
-        tiles.SetTileMethod('X', LuoSeina, Color.Gray);
-        tiles.SetTileMethod('P', the_ballmaker);
-        tiles.Execute(60, 60);
+        
+        
         
     }
     
     
-    void LuoKentta()
+    void LuoKentta(string kentta)
     {
-        
+        TileMap ruudut = TileMap.FromLevelAsset(kentta);
         
         
         Level.Background.Color = Color.Black;
-
+        ruudut.SetTileMethod('P',the_ballmaker );
+        ruudut.SetTileMethod('X',LuoSeina, Color.Gray);
+        ruudut.Execute();
         Camera.ZoomToLevel();
     }
 
+    void Seuraavakenttä()
+    {
+        ClearAll();
 
+        if (kenttaNro == 1) LuoKentta("kentta1.txt");
+        else if (kenttaNro == 2) LuoKentta("kentta2");
+        else if (kenttaNro == 3) LuoKentta("kentta3");
+        else if (kenttaNro > 3) Exit();
+        
+    }
 
 
 
@@ -171,10 +160,24 @@ public class DetoBall : PhysicsGame
         
     }
 
-
-
-
-
+ //      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   
+ //      X                                 X  
+ //      X                                 X 
+ //      X                                 X  
+ //      X                                 X  
+ //      X                                 X 
+ //      X                                 X  
+ //      X                                 X   
+ //      X                                 X   
+ //      X                                 X  
+ //      X                                 X  
+ //      X                                 X  
+ //      X                                 X  
+ //      X                                 X  
+ //      X                                 X  
+ //      X                                 X  
+ //      X                                 X  
+ //      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  
 
 
 

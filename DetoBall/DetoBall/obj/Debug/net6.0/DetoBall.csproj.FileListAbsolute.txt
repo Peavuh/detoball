@@ -53,3 +53,4 @@ C:\MyTemp\detoball\DetoBall\DetoBall\obj\Debug\net6.0\DetoBall.dll
 C:\MyTemp\detoball\DetoBall\DetoBall\obj\Debug\net6.0\ref\DetoBall.dll
 C:\MyTemp\detoball\DetoBall\DetoBall\obj\Debug\net6.0\DetoBall.pdb
 C:\MyTemp\detoball\DetoBall\DetoBall\obj\Debug\net6.0\DetoBall.genruntimeconfig.cache
+C:\MyTemp\detoball\DetoBall\DetoBall\bin\Debug\net6.0\Content\kentta1.txt
