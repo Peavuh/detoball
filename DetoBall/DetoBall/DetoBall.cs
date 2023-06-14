@@ -39,9 +39,10 @@ public class DetoBall : PhysicsGame
         
         
         Level.Background.Color = Color.Black;
-        ruudut.SetTileMethod('P',the_ballmaker );
+        ruudut.SetTileMethod('P',the_ballmaker);
         ruudut.SetTileMethod('X',LuoSeina, Color.Gray);
-        ruudut.Execute();
+        ruudut.SetTileMethod('M',Stylish_Finish, Color.Cyan);
+        ruudut.Execute(42, 42);
         Camera.ZoomToLevel();
     }
 
@@ -52,8 +53,9 @@ public class DetoBall : PhysicsGame
         if (kenttaNro == 1) LuoKentta("kentta1.txt");
         else if (kenttaNro == 2) LuoKentta("kentta2");
         else if (kenttaNro == 3) LuoKentta("kentta3");
-        else if (kenttaNro > 3) Exit();
-        
+        else if (kenttaNro == 4) LuoKentta("kentta4");
+        else if (kenttaNro == 5) LuoKentta("kentta5");
+        else if (kenttaNro > 5) Exit();
     }
 
 
@@ -160,6 +162,43 @@ public class DetoBall : PhysicsGame
         
     }
 
+    void Stylish_Finish(Vector paikka, double leveys, double korkeus, Color väri)
+    {
+        PhysicsObject finish = new PhysicsObject(30.0, 30.0);
+        finish.Shape = Shape.Rectangle;
+        finish.IgnoresExplosions = true;
+        finish.IgnoresGravity = true;
+        finish.Restitution = 0;
+        Add(finish);
+        finish.MakeStatic();
+    }
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
  //      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   
  //      X                                 X  
  //      X                                 X 
