@@ -58,3 +58,5 @@ C:\MyTemp\detoball\DetoBall\DetoBall\bin\Debug\net6.0\Content\kentta2.txt
 C:\MyTemp\detoball\DetoBall\DetoBall\bin\Debug\net6.0\Content\kentta3.txt
 C:\MyTemp\detoball\DetoBall\DetoBall\bin\Debug\net6.0\Content\kentta4.txt
 C:\MyTemp\detoball\DetoBall\DetoBall\bin\Debug\net6.0\Content\kentta5.txt
+C:\MyTemp\detoball\DetoBall\DetoBall\bin\Debug\net6.0\Content\kentta6.txt
+C:\MyTemp\detoball\DetoBall\DetoBall\bin\Debug\net6.0\Content\kentta7.txt

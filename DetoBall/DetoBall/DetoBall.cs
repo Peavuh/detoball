@@ -12,7 +12,7 @@ public class DetoBall : PhysicsGame
     private PhysicsObject ball;
   //  TileMap ruudut = TileMap.FromLevelAsset("kentta1");
     private int kenttaNro = 1;
-    
+    private PhysicsObject portal_E;
         
         
         
@@ -38,6 +38,8 @@ public class DetoBall : PhysicsGame
         ruudut.SetTileMethod('X',LuoSeina, Color.Gray);
         ruudut.SetTileMethod('M',Stylish_Finish, Color.Cyan);
         ruudut.SetTileMethod('Y', death_doritos, Color.Cyan);
+        ruudut.SetTileMethod('O', portal_O, Color.Lime);
+        ruudut.SetTileMethod('E', Portal_E, Color.Orange);
         ruudut.Execute(42, 42);
         Camera.ZoomToLevel();
     }
@@ -51,7 +53,14 @@ public class DetoBall : PhysicsGame
         else if (kenttaNro == 3) LuoKentta("kentta3");
         else if (kenttaNro == 4) LuoKentta("kentta4");
         else if (kenttaNro == 5) LuoKentta("kentta5");
-        else if (kenttaNro > 5) Exit();
+        else if (kenttaNro == 6) LuoKentta("kentta6");
+        else if (kenttaNro == 7) LuoKentta("kentta7");
+        else if (kenttaNro > 7) Exit();
+            
+        
+        
+            
+        
     }
 
 
@@ -214,8 +223,45 @@ public class DetoBall : PhysicsGame
         
     }
 
+    void portal_O(Vector paikka, double leveys, double korkeus, Color vari)
+    {
+        PhysicsObject portal_O = new PhysicsObject(40.0, 40.0);
+        portal_O.Shape = Shape.Rectangle;
+        portal_O.IgnoresExplosions = true;
+        portal_O.IgnoresGravity = true;
+        portal_O.MakeStatic();
+        portal_O.Color = Color.Lime;
+        portal_O.Position = paikka;
+        AddCollisionHandler (portal_O, "bal",
+            delegate(PhysicsObject portal_O, PhysicsObject ball)
+            {
+                teleport(portal_O, ball, portal_E.Position + new Vector(45, 0));  });
+        Add(portal_O);
+
+    }
+
+    void Portal_E(Vector paikka, double leveys, double korkeus, Color vari)
+    {
+        portal_E = new PhysicsObject(40.0, 40.0);
+        portal_E.Shape=Shape.Rectangle;
+        portal_E.IgnoresGravity = true;
+        portal_E.IgnoresExplosions = true;
+        portal_E.MakeStatic();
+        portal_E.Color = Color.Orange;
+        portal_E.Position = paikka;
+        Add(portal_E);
 
 
+    }
+
+    void teleport(PhysicsObject portal_O, PhysicsObject ball, Vector paikka)
+    {
+        ball.Position = paikka;
+
+
+
+
+    }
 
 
     
