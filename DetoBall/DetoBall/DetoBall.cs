@@ -55,7 +55,8 @@ public class DetoBall : PhysicsGame
         else if (kenttaNro == 5) LuoKentta("kentta5");
         else if (kenttaNro == 6) LuoKentta("kentta6");
         else if (kenttaNro == 7) LuoKentta("kentta7");
-        else if (kenttaNro > 7) Exit();
+        else if (kenttaNro == 8) LuoKentta("kentta8");
+        else if (kenttaNro > 8) Exit();
             
         
         
