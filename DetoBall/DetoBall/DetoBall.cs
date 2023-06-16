@@ -6,7 +6,7 @@ using Jypeli.Controls;
 using Jypeli.Widgets;
 
 namespace DetoBall;
-
+ //versio 1.0
 public class DetoBall : PhysicsGame
 {
     private PhysicsObject ball;
